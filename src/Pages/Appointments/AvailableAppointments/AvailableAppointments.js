@@ -27,7 +27,7 @@ const AvailableAppointments = ({selectedDate}) => {
                 ></AvailableOption> )
             }
             </div>
-            <BookingModal treatment={treatment}></BookingModal>
+            <BookingModal treatment={treatment} selectedDate={selectedDate}></BookingModal>
             
         </section>
 
