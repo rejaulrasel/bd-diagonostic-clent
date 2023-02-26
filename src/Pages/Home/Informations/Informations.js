@@ -1,8 +1,10 @@
 import React from 'react';
+import './Informations.css'
 import clock from '../../../assets/icons/clock.svg';
 import marker from '../../../assets/icons/marker.svg';
 import phone from '../../../assets/icons/phone.svg';
 import Information from './Information';
+
 const Informations = () => {
 
     const informations = [
@@ -30,7 +32,7 @@ const Informations = () => {
     ]
 
     return (
-        <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        <div className=' informations grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
         {
             informations.map(information => <Information 
             key={information.id}
