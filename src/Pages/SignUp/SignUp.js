@@ -70,9 +70,9 @@ const SignUp = () => {
             />
           </form>
           <p className="text-center mt-3">
-            New to BD-Diagonostics?{" "}
-            <Link className="text-secondary" to="/signup">
-              create new account
+            Already SignUp?{" "}
+            <Link className="text-secondary" to="/login">
+              Login
             </Link>
           </p>
           <div className="divider">OR</div>
