@@ -1,4 +1,5 @@
 import React from "react";
+import './Login.css'
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
@@ -18,7 +19,7 @@ const Login = () => {
   return (
     <div className="h-[600px] flex justify-center items-center">
       <div className="w-96">
-        <h1 className="text-2xl text-center">Login</h1>
+        <h1 className="text-2xl text-center font-semibold">Login</h1>
         <form onSubmit={handleSubmit(handleLogin)}>
           <div className="form-control w-full">
             <label className="label">
@@ -30,7 +31,7 @@ const Login = () => {
               placeholder="enter your email"
               className="input input-bordered text-accent"
             />
-            {errors.email && <p role="alert">{errors.email?.message}</p>}
+            {errors.email && <p className="text-amber-600	" role="alert">{errors.email?.message}</p>}
           </div>
           <div className="form-control w-full">
             <label className="label">
@@ -48,7 +49,7 @@ const Login = () => {
               placeholder="enter your email"
               className="input input-bordered text-accent"
             />
-            {errors.password && <p role="alert">{errors.password?.message}</p>}
+            {errors.password && <p  className="text-amber-600	" role="alert">{errors.password?.message}</p>}
           </div>
           <input
             className="btn btn-secondary w-full mt-5 text-xl"
@@ -58,7 +59,7 @@ const Login = () => {
         </form>
         <p className="text-center mt-3">
           New to BD-Diagonostics?{" "}
-          <Link className="text-secondary" to="/signup">
+          <Link className="text-primary" to="/signup">
             create new account
           </Link>
         </p>

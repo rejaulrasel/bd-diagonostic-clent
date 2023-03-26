@@ -1,9 +1,10 @@
 import React from 'react';
+import image from '../../../assets/images/Footer-focused-on-getting-newsletter-subscribers-1024x347.jpg'
 
 const Footer = () => {
     return (
         <div>
-            <h4>This is footer</h4>
+           <img src={image} className='w-full' alt="" />
         </div>
     );
 };
