@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
-  
   const {
     register,
     handleSubmit,
@@ -12,8 +12,18 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
+  const { createUser } = useContext(AuthContext);
   const handleSignUp = (data) => {
     console.log(data);
+    createUser(data.email, data.password, data.name)
+    .then(result => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+
     reset();
   };
 
@@ -32,7 +42,11 @@ const SignUp = () => {
               placeholder="enter your Name"
               className="input input-bordered"
             />
-            {errors.name && <p className="text-amber-600	" role="alert">{errors.name?.message}</p>}
+            {errors.name && (
+              <p className="text-amber-600	" role="alert">
+                {errors.name?.message}
+              </p>
+            )}
           </div>
           <div className="form-control w-full">
             <label className="label">
@@ -44,7 +58,11 @@ const SignUp = () => {
               placeholder="enter your email"
               className="input input-bordered"
             />
-            {errors.email && <p className="text-amber-600	" role="alert">{errors.email?.message}</p>}
+            {errors.email && (
+              <p className="text-amber-600	" role="alert">
+                {errors.email?.message}
+              </p>
+            )}
           </div>
           <div className="form-control w-full">
             <label className="label">
@@ -66,7 +84,11 @@ const SignUp = () => {
               placeholder="enter your password"
               className="input input-bordered"
             />
-            {errors.password && <p className="text-amber-600	" role="alert">{errors.password?.message}</p>}
+            {errors.password && (
+              <p className="text-amber-600	" role="alert">
+                {errors.password?.message}
+              </p>
+            )}
           </div>
           <input
             className="btn btn-secondary w-full mt-5 text-xl"

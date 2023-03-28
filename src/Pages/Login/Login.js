@@ -1,10 +1,14 @@
-import React from "react";
-import './Login.css'
+import React, { useContext } from "react";
+import "./Login.css";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { useState } from "react";
 
 const Login = () => {
+  const [loginError, setLoginError] = useState("");
+  const { signIn } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -14,7 +18,17 @@ const Login = () => {
 
   const handleLogin = (data) => {
     console.log(data);
-    reset();
+    setLoginError("");
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setLoginError(error.message);
+      });
+     reset()
   };
   return (
     <div className="h-[600px] flex justify-center items-center">
@@ -31,7 +45,11 @@ const Login = () => {
               placeholder="enter your email"
               className="input input-bordered text-accent"
             />
-            {errors.email && <p className="text-amber-600	" role="alert">{errors.email?.message}</p>}
+            {errors.email && (
+              <p className="text-amber-600	" role="alert">
+                {errors.email?.message}
+              </p>
+            )}
           </div>
           <div className="form-control w-full">
             <label className="label">
@@ -41,16 +59,17 @@ const Login = () => {
               type="password"
               {...register("password", {
                 required: "paassword is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 character long",
-                },
               })}
               placeholder="enter your email"
               className="input input-bordered text-accent"
             />
-            {errors.password && <p  className="text-amber-600	" role="alert">{errors.password?.message}</p>}
+            {errors.password && (
+              <p className="text-amber-600	" role="alert">
+                {errors.password?.message}
+              </p>
+            )}
           </div>
+          {loginError && <p>{loginError}</p>}
           <input
             className="btn btn-secondary w-full mt-5 text-xl"
             type="submit"
@@ -66,7 +85,8 @@ const Login = () => {
         <div className="divider">OR</div>
 
         <button className="btn w-full bg-none border-secondary-content text-xl">
-          <FcGoogle className="text-2xl" />CONTINUE WITH GOOGLE
+          <FcGoogle className="text-2xl" />
+          CONTINUE WITH GOOGLE
         </button>
       </div>
     </div>
